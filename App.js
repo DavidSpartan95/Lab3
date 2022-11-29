@@ -37,7 +37,9 @@ const RoomPictures = ({ }) => {
     </View>
   )
 }
-const DeviceButtons = ({ lampColor: Color, setLampColor: setColor, devicesOnNum, setDevicesOnNum, nameOfDevice }) => {
+const DeviceButtons = ({ setDevicesOnNum, nameOfDevice }) => {
+
+  const [Color, setColor] = useState("red")
 
   return (
     <View>
@@ -54,7 +56,7 @@ const DeviceButtons = ({ lampColor: Color, setLampColor: setColor, devicesOnNum,
           <Button title='on'
             onPress={() => {
               if (Color == "red") {
-                setDevicesOnNum(devicesOnNum + 1)
+                setDevicesOnNum((prevDevicesOnNum) => prevDevicesOnNum + 1)
                 setColor("green")
               }
 
@@ -63,7 +65,7 @@ const DeviceButtons = ({ lampColor: Color, setLampColor: setColor, devicesOnNum,
           <Button title='off'
             onPress={() => {
               if (Color == "green") {
-                setDevicesOnNum(devicesOnNum - 1)
+                setDevicesOnNum((prevDevicesOnNum) => prevDevicesOnNum - 1)
                 setColor("red")
               }
             }} />
@@ -75,9 +77,6 @@ const DeviceButtons = ({ lampColor: Color, setLampColor: setColor, devicesOnNum,
 
 export default function App() {
 
-  const [lampColor, setLampColor] = useState("red")
-  const [tvColor, setTvColor] = useState("red")
-  const [heaterColor, setHeaterColor] = useState("red")
   const [devicesOnNum, setDevicesOnNum] = useState(0)
 
   return (
@@ -91,9 +90,9 @@ export default function App() {
 
       <Text style={{ marginBottom: 10, marginTop: 20, fontSize: 26, fontWeight: "bold" }}>Devices</Text>
 
-      <DeviceButtons lampColor={lampColor} setLampColor={setLampColor} devicesOnNum={devicesOnNum} setDevicesOnNum={setDevicesOnNum} nameOfDevice="Living Room" />
-      <DeviceButtons lampColor={heaterColor} setLampColor={setHeaterColor} devicesOnNum={devicesOnNum} setDevicesOnNum={setDevicesOnNum} nameOfDevice="Heater" />
-      <DeviceButtons lampColor={tvColor} setLampColor={setTvColor} devicesOnNum={devicesOnNum} setDevicesOnNum={setDevicesOnNum} nameOfDevice="TV" />
+      <DeviceButtons setDevicesOnNum={setDevicesOnNum} nameOfDevice="Living Room" />
+      <DeviceButtons setDevicesOnNum={setDevicesOnNum} nameOfDevice="Heater" />
+      <DeviceButtons setDevicesOnNum={setDevicesOnNum} nameOfDevice="TV" />
 
 
       <Text style={{ fontWeight: "bold" }}>Total Devices On: {devicesOnNum}
