@@ -74,14 +74,7 @@ const DeviceButtons = ({ lampColor: Color, setLampColor: setColor, devicesOnNum,
 }
 
 export default function App() {
-  /*I would like to use this Dict instead of the 4 seprate state variables bellow, but was unable to make it work
-  with just 1 component(more component would have taken up way more space) */
-  const [deviceDict, setDeviceDict] = useState({
-    lampColor: "red",
-    tvColor: "red",
-    heaterColor: "red",
-    devicesOnNum: 0,
-  })
+
   const [lampColor, setLampColor] = useState("red")
   const [tvColor, setTvColor] = useState("red")
   const [heaterColor, setHeaterColor] = useState("red")
